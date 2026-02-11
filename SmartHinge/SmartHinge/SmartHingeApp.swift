@@ -1,14 +1,14 @@
 //
-//  SmartHinge_App.swift
-//  SmartHinge\
+//  SmartHingeApp.swift
+//  SmartHinge
 //
-//  Created by AmoghB on 2/5/26.
+//  Created by AmoghB on 2/6/26.
 //
 
 import SwiftUI
 
 @main
-struct SmartHinge_App: App {
+struct SmartHingeApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
