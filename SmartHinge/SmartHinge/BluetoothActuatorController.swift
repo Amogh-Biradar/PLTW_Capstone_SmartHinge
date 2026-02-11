@@ -35,6 +35,7 @@ final class BluetoothActuatorController: NSObject, ObservableObject {
     private var centralManager: CBCentralManager!
     private var connectedPeripheral: CBPeripheral?
     private var writeCharacteristic: CBCharacteristic?
+    private var didAutoRequestBluetooth: Bool = false
 
     // MARK: - Replace these with your actuator's UUIDs
     // If you know the service/characteristics, set them here to speed up discovery.
@@ -46,6 +47,12 @@ final class BluetoothActuatorController: NSObject, ObservableObject {
         super.init()
         // Use the main queue so UI updates are safe without hopping threads.
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
+        
+        #if DEBUG
+        if Bundle.main.object(forInfoDictionaryKey: "NSBluetoothAlwaysUsageDescription") == nil {
+            print("[SmartHinge] Warning: NSBluetoothAlwaysUsageDescription is missing from Info.plist. iOS will not prompt for Bluetooth access and the app will appear unauthorized.")
+        }
+        #endif
     }
 
     // MARK: - Scanning
@@ -127,6 +134,30 @@ final class BluetoothActuatorController: NSObject, ObservableObject {
 extension BluetoothActuatorController: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         isBluetoothAvailable = (central.state == .poweredOn)
+        
+        switch central.state {
+        case .poweredOn:
+            // Automatically trigger a brief scan once to prompt for Bluetooth permission if needed.
+            if !didAutoRequestBluetooth {
+                didAutoRequestBluetooth = true
+                startScan()
+                // Stop the auto scan after a short delay to avoid scanning indefinitely.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+                    guard let self = self else { return }
+                    if self.isScanning && self.connectionState != .connected {
+                        self.stopScan()
+                    }
+                }
+            }
+        case .unauthorized:
+            // iOS denied authorization (likely missing Info.plist key or user denied). Log for diagnostics.
+            print("[SmartHinge] Bluetooth unauthorized. Ensure NSBluetoothAlwaysUsageDescription is set and permission is granted in Settings.")
+        case .poweredOff, .resetting, .unknown, .unsupported:
+            break
+        @unknown default:
+            break
+        }
+
         if central.state != .poweredOn {
             // Reset state if BT turns off
             isScanning = false

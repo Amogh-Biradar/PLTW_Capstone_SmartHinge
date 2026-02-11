@@ -22,7 +22,6 @@ private enum DeviceKind: String, CaseIterable, Identifiable {
 
 struct ContentView: View {
     @StateObject private var controller = BluetoothActuatorController()
-    @State private var isSimulation: Bool = false
     @State private var angleDegrees: Double = 1.0
 
     // Labeling & selection state
@@ -47,10 +46,6 @@ struct ContentView: View {
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                         Spacer()
-                        Toggle("Demo Mode", isOn: $isSimulation)
-                            .toggleStyle(.switch)
-                            .labelsHidden()
-                            .help("Enable to simulate scanning and connection without hardware")
                         if controller.connectionState == .connected {
                             Button("Disconnect") {
                                 controller.disconnect()
@@ -189,9 +184,6 @@ struct ContentView: View {
             .navigationTitle("SmartHinge")
             .onAppear {
                 restoreLabels()
-            }
-            .onChange(of: isSimulation) { oldValue, newValue in
-                controller.stopScan()
             }
         }
         .sheet(isPresented: $isLabelSheetPresented) {
