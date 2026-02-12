@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C8D0A8E12F3E3D3A0002AEAE /* BLEScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D0A8E02F3E3D3A0002AEAE /* BLEScanner.swift */; };
+		C8D0A8E32F3E3EEF0002AEAE /* BLEScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D0A8E22F3E3EEF0002AEAE /* BLEScannerView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		C8B4B2B42F36539A00E8F738 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +32,8 @@
 		C8B4B2A62F36539700E8F738 /* SmartHinge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHinge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B4B2B32F36539A00E8F738 /* SmartHingeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartHingeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B4B2BD2F36539A00E8F738 /* SmartHingeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartHingeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8D0A8E02F3E3D3A0002AEAE /* BLEScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEScanner.swift; sourceTree = "<group>"; };
+		C8D0A8E22F3E3EEF0002AEAE /* BLEScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -79,6 +86,8 @@
 				C8B4B2B62F36539A00E8F738 /* SmartHingeTests */,
 				C8B4B2C02F36539A00E8F738 /* SmartHingeUITests */,
 				C8B4B2A72F36539700E8F738 /* Products */,
+				C8D0A8E02F3E3D3A0002AEAE /* BLEScanner.swift */,
+				C8D0A8E22F3E3EEF0002AEAE /* BLEScannerView.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -236,6 +245,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8D0A8E32F3E3EEF0002AEAE /* BLEScannerView.swift in Sources */,
+				C8D0A8E12F3E3D3A0002AEAE /* BLEScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
