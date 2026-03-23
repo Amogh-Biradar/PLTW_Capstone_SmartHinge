@@ -20,8 +20,8 @@ void loop() {
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-const char* ssid     = "YourWiFiName";
-const char* password = "YourWiFiPassword";
+const char* ssid     = "Wifi-Password-OpenToAll";
+const char* password = "OpenToAll";
 
 ESP8266WebServer server(80);
 String lastReceived = "Waiting for command.";
