@@ -1,19 +1,3 @@
-
-
-
-
-void setup() {
-  
-  //move(0, 0);
-}
-
-void loop() {
- 
-  move(0, 0); delay(500);
-  
-}
-
-
 #include <Arduino.h>
 #define PIN_A 5
 #define PIN_B 6
@@ -62,7 +46,7 @@ void handleMotorCommand(String cmd) {
 void setup() {
   pinMode(PIN_A, OUTPUT);
   pinMode(PIN_B, OUTPUT);
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   WiFi.begin(ssid, password);
   Serial.print("Connecting to WiFi");
@@ -98,11 +82,12 @@ void loop() {
   server.handleClient();
 }
 
-/**How the command flow works:**
+/**How the command flow works:
+
 App: Extend + 5 degrees
-  → sends "extend:5" to ESP /send endpoint
-  → ESP splits it into direction="extend", deg=5
-  → YOUR motor code runs here
-  → ESP sets lastReceived = "Did: extend 5 degrees"
-  → App polls /receive and shows it in the response box
-**/
+  sends "extend:5" to ESP /send endpoint
+  ESP splits it into direction="extend", deg=5
+  YOUR motor code runs here
+  ESP sets lastReceived = "Did: extend 5 degrees"
+  App polls /receive and shows it in the response box
+  **/
