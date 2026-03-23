@@ -97,15 +97,12 @@ void setup() {
 void loop() {
   server.handleClient();
 }
-```
 
----
-
-**How the command flow works:**
-```
+/**How the command flow works:**
 App: Extend + 5 degrees
   → sends "extend:5" to ESP /send endpoint
   → ESP splits it into direction="extend", deg=5
   → YOUR motor code runs here
   → ESP sets lastReceived = "Did: extend 5 degrees"
   → App polls /receive and shows it in the response box
+**/
