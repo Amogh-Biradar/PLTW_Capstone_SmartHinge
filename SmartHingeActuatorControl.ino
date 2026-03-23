@@ -27,6 +27,9 @@ void loop() {
 const char* ssid     = "TP_Link";
 const char* password = "65970324";
 
+const char* ssid     = "Wifi-Password-OpenToAll"; 
+const char* password = "OpenToAll";
+
 ESP8266WebServer server(80);
 String lastReceived = "Nothing yet.";
 
