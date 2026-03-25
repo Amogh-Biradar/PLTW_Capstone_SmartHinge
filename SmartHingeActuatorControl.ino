@@ -1,24 +1,14 @@
-#include <Arduino.h>
 #include <ESP8266WiFi.h>
+#include <Arduino.h>
 #include <ESP8266WebServer.h>
 
-// ── Pin definitions ────────────────────────────
+const char* ssid     = "Wifi-Password-OpenToAll";
+const char* password = "OpenToAll";
 #define PIN_A 5
 #define PIN_B 6
 
-// ── WiFi credentials ───────────────────────────
-const char* ssid     = "Wifi-Password-OpenToAll";
-const char* password = "OpenToAll";
-
-// ── Static IP config ───────────────────────────
-// This makes the ESP always use the same IP so you never have to check Serial Monitor
-IPAddress staticIP(192, 168, 1, 100);   // ← This is what you type in the app
-IPAddress gateway(192, 168, 1, 1);      // ← Usually your router's IP
-IPAddress subnet(255, 255, 255, 0);
-
 ESP8266WebServer server(80);
-String lastReceived = "Waiting for command.";
-
+String lastReceived = "Nothing yet.";
 
 // ── Motor control ──────────────────────────────
 // 1,0 = extend | 0,1 = contract | 0,0 or 1,1 = off
@@ -50,14 +40,8 @@ void handleMotorCommand(String cmd) {
   lastReceived = "Did: " + direction + " " + String(deg) + " degrees";
 }
 
-
 void setup() {
-  pinMode(PIN_A, OUTPUT);
-  pinMode(PIN_B, OUTPUT);
-  Serial.begin(115200);
-
-  // Apply static IP before connecting
-  WiFi.config(staticIP, gateway, subnet);
+  Serial.begin(9600);
 
   WiFi.begin(ssid, password);
   Serial.print("Connecting to WiFi");
@@ -65,17 +49,27 @@ void setup() {
     delay(500);
     Serial.print(".");
   }
-  Serial.println("\nConnected! Fixed IP: 192.168.1.100");
+  Serial.println("\nConnected! Go to this IP in your browser:");
+  Serial.println(WiFi.localIP());
 
-  // App sends a command here → "http://192.168.1.100/send?msg=extend:5"
+  server.on("/", []() {
+    String html = "<html><body style='font-family:sans-serif;text-align:center;margin-top:50px'>";
+    html += "<h2>ESP8266 Messenger</h2>";
+    html += "<p><b>Last received:</b> <span id='msg'>...</span></p>";
+    html += "<input id='input' type='text' placeholder='Type a message...' />";
+    html += "<button onclick=\"fetch('/send?msg='+encodeURIComponent(document.getElementById('input').value))\">Send</button>";
+    html += "<script>setInterval(()=>fetch('/receive').then(r=>r.text()).then(t=>document.getElementById('msg').innerText=t),1000);</script>";
+    html += "</body></html>";
+    server.send(200, "text/html", html);
+  });
+
   server.on("/send", []() {
-    String cmd = server.arg("msg");
-    Serial.println("Received: " + cmd);
-    handleMotorCommand(cmd);
+    lastReceived = server.arg("msg");
+    Serial.println("Browser says: " + lastReceived);
+    handleMotorCommand(lastReceived);
     server.send(200, "text/plain", "OK");
   });
 
-  // App polls this → "http://192.168.1.100/receive"
   server.on("/receive", []() {
     server.send(200, "text/plain", lastReceived);
   });
@@ -85,4 +79,9 @@ void setup() {
 
 void loop() {
   server.handleClient();
+
+  if (Serial.available()) {
+    lastReceived = Serial.readString();
+    Serial.println("Message set to: " + lastReceived);
+  } 
 }
