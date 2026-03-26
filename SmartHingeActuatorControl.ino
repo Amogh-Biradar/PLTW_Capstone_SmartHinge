@@ -2,10 +2,10 @@
 #include <Arduino.h>
 #include <ESP8266WebServer.h>
 
-const char* ssid     = "Wifi-Password-OpenToAll";
-const char* password = "OpenToAll";
-#define PIN_A 5
-#define PIN_B 6
+const char* ssid     = "AmoghB";
+const char* password = "12345678";
+#define PIN_A 1
+#define PIN_B 3
 
 ESP8266WebServer server(80);
 String lastReceived = "Nothing yet.";
@@ -37,6 +37,7 @@ void handleMotorCommand(String cmd) {
     move(0, 0);
   }
 
+  
   lastReceived = "Did: " + direction + " " + String(deg) + " degrees";
 }
 
@@ -78,10 +79,12 @@ void setup() {
 }
 
 void loop() {
-  server.handleClient();
+  move(1,0); delay(1500); move(0,0);  
+  
+  // server.handleClient();
 
-  if (Serial.available()) {
-    lastReceived = Serial.readString();
-    Serial.println("Message set to: " + lastReceived);
-  } 
+  // if (Serial.available()) {
+  //   lastReceived = Serial.readString();
+  //   Serial.println("Message set to: " + lastReceived);
+  // } 
 }
