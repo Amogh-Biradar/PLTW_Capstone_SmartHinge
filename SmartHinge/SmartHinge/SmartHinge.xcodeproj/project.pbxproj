@@ -6,11 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		C8D0A8E12F3E3D3A0002AEAE /* BLEScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D0A8E02F3E3D3A0002AEAE /* BLEScanner.swift */; };
-		C8D0A8E32F3E3EEF0002AEAE /* BLEScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D0A8E22F3E3EEF0002AEAE /* BLEScannerView.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		C8B4B2B42F36539A00E8F738 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -32,24 +27,25 @@
 		C8B4B2A62F36539700E8F738 /* SmartHinge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartHinge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B4B2B32F36539A00E8F738 /* SmartHingeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartHingeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B4B2BD2F36539A00E8F738 /* SmartHingeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartHingeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8D0A8E02F3E3D3A0002AEAE /* BLEScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEScanner.swift; sourceTree = "<group>"; };
-		C8D0A8E22F3E3EEF0002AEAE /* BLEScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C8C747412F6F1F1600A2C23F /* Exceptions for "SmartHinge" folder in "SmartHinge" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C8B4B2A52F36539700E8F738 /* SmartHinge */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C8B4B2A82F36539700E8F738 /* SmartHinge */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C8C747412F6F1F1600A2C23F /* Exceptions for "SmartHinge" folder in "SmartHinge" target */,
+			);
 			path = SmartHinge;
-			sourceTree = "<group>";
-		};
-		C8B4B2B62F36539A00E8F738 /* SmartHingeTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SmartHingeTests;
-			sourceTree = "<group>";
-		};
-		C8B4B2C02F36539A00E8F738 /* SmartHingeUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SmartHingeUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -83,11 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				C8B4B2A82F36539700E8F738 /* SmartHinge */,
-				C8B4B2B62F36539A00E8F738 /* SmartHingeTests */,
-				C8B4B2C02F36539A00E8F738 /* SmartHingeUITests */,
 				C8B4B2A72F36539700E8F738 /* Products */,
-				C8D0A8E02F3E3D3A0002AEAE /* BLEScanner.swift */,
-				C8D0A8E22F3E3EEF0002AEAE /* BLEScannerView.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,9 +131,6 @@
 			dependencies = (
 				C8B4B2B52F36539A00E8F738 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				C8B4B2B62F36539A00E8F738 /* SmartHingeTests */,
-			);
 			name = SmartHingeTests;
 			packageProductDependencies = (
 			);
@@ -162,9 +151,6 @@
 			dependencies = (
 				C8B4B2BF2F36539A00E8F738 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				C8B4B2C02F36539A00E8F738 /* SmartHingeUITests */,
-			);
 			name = SmartHingeUITests;
 			packageProductDependencies = (
 			);
@@ -184,6 +170,7 @@
 				TargetAttributes = {
 					C8B4B2A52F36539700E8F738 = {
 						CreatedOnToolsVersion = 26.2;
+						LastSwiftMigration = 2620;
 					};
 					C8B4B2B22F36539A00E8F738 = {
 						CreatedOnToolsVersion = 26.2;
@@ -245,8 +232,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8D0A8E32F3E3EEF0002AEAE /* BLEScannerView.swift in Sources */,
-				C8D0A8E12F3E3D3A0002AEAE /* BLEScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,11 +389,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HST9M87U82;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmartHinge/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -425,6 +412,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -436,11 +424,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HST9M87U82;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmartHinge/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

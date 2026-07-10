@@ -1,13 +1,13 @@
 //
-//  SmartHingeUITestsLaunchTests.swift
-//  SmartHingeUITests
+//  bluetooth_scannerUITestsLaunchTests.swift
+//  bluetooth scannerUITests
 //
-//  Created by AmoghB on 2/6/26.
+//  Created by AmoghB on 2/23/26.
 //
 
 import XCTest
 
-final class SmartHingeUITestsLaunchTests: XCTestCase {
+final class bluetooth_scannerUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
